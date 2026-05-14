@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: todo-deployment
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: todo-app
+
+  template:
+    metadata:
+      labels:
+        app: todo-app
+
+    spec:
+      containers:
+        - name: todo-container
+          image: todo-service:v3
+
+          imagePullPolicy: Never
+
+          ports:
+            - containerPort: 8080
+
+          volumeMounts:
+            - mountPath: /data
+              name: todo-storage
+
+      volumes:
+        - name: todo-storage
+          persistentVolumeClaim:
+            claimName: todo-pvc
