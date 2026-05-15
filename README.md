@@ -39,13 +39,13 @@ kind load docker-image todo-service:<version no> --name todo-cluster
 
 Change the <version no> in Deployment.yaml
 
-kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/deployment.yaml /
 kubectl rollout restart deployment todo-deployment
 
 Check:
 
-http://localhost:30080
-http://localhost:30080/todos
+http://localhost:30080 /
+http://localhost:30080/todos /
 http://localhost:30080/health
 
 Run and Enjoy.
